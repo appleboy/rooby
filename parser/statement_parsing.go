@@ -205,6 +205,12 @@ func (p *Parser) parseWhileStatement() *ast.WhileStatement {
 
 	p.nextToken()
 	ws.Condition = p.parseExpression(LOWEST)
+	p.nextToken()
+
+	if p.curTokenIs(token.SEMICOLON) {
+		p.nextToken()
+	}
+
 	ws.Body = p.parseBlockStatement()
 
 	return ws
